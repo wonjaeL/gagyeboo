@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
+
+<title>가계부</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/vendors.min.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap-extended.css}" />
+
+<link rel="stylesheet" th:href="@{/css/colors.css}" />
+<link rel="stylesheet" th:href="@{/css/components.css}" />
+
+
+<link rel="stylesheet" th:href="@{/css/vertical-menu.css}" />
+<link rel="stylesheet" th:href="@{/css/flatpickr.min.css}" />
+
+<link rel="stylesheet" th:href="@{/css/toastr.min.css}" />
+
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
+	data-menu="vertical-menu-modern" data-col="">
+
+
+	<!-- BEGIN: Main Menu-->
+	<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+		<div class="navbar-header">
+			<ul class="nav navbar-nav flex-row">
+				<li class="nav-item me-auto"><a class="navbar-brand" href="/"> <span class="brand-logo"> <image
+								th:src="@{/images/favicon.ico}" width=100></span>
+						<h2 class="brand-text">가 계 부</h2>
+				</a></li>
+				<li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"> <i
+						class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i> <i
+						class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a>
+				</li>
+			</ul>
+		</div>
+		<div class="shadow-bottom"></div>
+		<div class="main-menu-content">
+			<ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+				<li class=" nav-item"><a class="d-flex align-items-center" href="/money/dashboard.do"><i data-feather="bar-chart"></i>
+						<span class="menu-title text-truncate" data-i18n="Home">리포트</span> </a></li>
+				<li class=" nav-item"><a class="d-flex align-items-center" href="/money/list.do"><i data-feather="list"></i> <span
+						class="menu-title text-truncate" data-i18n="Home">목록</span> </a></li>
+				<li class=" nav-item"><a class="d-flex align-items-center" href="/money/add.do"><i data-feather="plus"></i> <span
+						class="menu-title text-truncate" data-i18n="Home">항목 추가</span> </a></li>
+				<li class=" nav-item"><a class="d-flex align-items-center" href="/user/list.do"><i data-feather="user"></i> <span
+						class="menu-title text-truncate" data-i18n="Home">권한 제어</span> </a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- END: Main Menu-->
+
+	<!-- BEGIN: Content-->
+	<div class="app-content content ">
+		<div class="content-overlay"></div>
+		<div class="content-wrapper">
+			<div class="content-header row">
+				<div class="content-header-left col-md-9 col-12 mb-2">
+					<div class="row breadcrumbs-top">
+						<div class="col-12">
+							<h2 class="content-header-title float-start mb-0">항목 추가</h2>
+						</div>
+					</div>
+				</div>
+				<div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+					<div class="mb-1 breadcrumb-right"></div>
+				</div>
+			</div>
+			<div class="content-body">
+				<div class="row">
+
+					<!-- add Start -->
+					<div class="row">
+						<!-- Invoice Add Left starts -->
+						<div class="col-xl-9 col-md-8 col-12">
+							<div class="card">
+								<div class="card-body">
+									<form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false" novalidate="novalidate">
+										<div class="col-12 col-md-12">
+											<label class="form-label">카테고리</label>
+											<ul class="list-group list-group-flush">
+												<div class="row">
+													<div class="col-4">
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-success me-1"> <i data-feather="briefcase"
+																	class="font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">근로수입</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-success me-1"> <i data-feather="dollar-sign"
+																	class="font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">비근로수입</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-success me-1"> <i data-feather="gift" class="font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">기타수입</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-info me-1"> <i data-feather="truck" class="font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">차량유지비</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+													</div>
+													<div class="col-4">
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-warning me-1"> <i data-feather="coffee" class="font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">식비</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-warning me-1"> <i data-feather="tag" class="font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">생활용품</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-warning me-1"> <i data-feather="heart"
+																	class="text-danger font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">의료건강비</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-info me-1"> <i data-feather="home" class="font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">월세</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+													</div>
+													<div class="col-4">
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-danger me-1"> <i data-feather="shopping-cart"
+																	class="font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">쇼핑</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-danger me-1"> <i data-feather="headphones"
+																	class="font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">문화운동비</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-danger me-1"> <i data-feather="globe" class="font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">여행</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+														<li class="list-group-item border-0 px-0"><label class="d-flex cursor-pointer"> <span
+																class="avatar avatar-tag bg-light-info me-1"> <i data-feather="user-check" class="font-medium-3"></i>
+															</span> <span class="d-flex align-items-center justify-content-between flex-grow-1"> <span class="me-1">
+																		<span class="h5 m-0 d-block fw-bolder">보험 / 대출이자</span>
+																</span> <span> <input class="form-check-input" type="radio" name="categoryRadio">
+																</span>
+															</span>
+														</label></li>
+													</div>
+												</div>
+											</ul>
+										</div>
+
+
+										<div class="col-md-6 mb-1">
+											<label class="form-label" for="input-date">날짜</label> <input type="text" id="input-date"
+												class="form-control flatpickr-basic flatpickr-input" placeholder="YYYY-MM-DD">
+										</div>
+
+										<div class="col-12 col-md-6">
+											<label class="form-label" for="input-amount">금액</label>
+											<div class="input-group mb-2">
+												<span class="input-group-text" id="basic-addon1">$</span> <input id="input-amount" type="number"
+													class="form-control" placeholder="x,xxx원" aria-label="Username" aria-describedby="basic-addon1">
+											</div>
+										</div>
+										<div class="col-9">
+											<label class="form-label" for="input-title">항목 설명</label> <input type="text" id="input-title"
+												name="input-title" class="form-control" placeholder="간단한 설명을 입력해주세요">
+										</div>
+										<div class="col-3">
+											<label class="form-label">수입/지출</label>
+											<div class="d-flex align-items-center mt-1">
+												<label class="form-check-label fw-bolder text-danger">지출</label>
+												<div class="form-check form-switch form-check-success mx-1">
+													<input type="checkbox" class="form-check-input" id="input-swith" checked=""> <label
+														class="form-check-label" for="input-swith"> <span class="switch-icon-left"> <i
+															data-feather="trending-up" class="feather"></i>
+													</span> <span class="switch-icon-right"> <i data-feather="trending-down" class="feather"></i>
+													</span>
+													</label>
+												</div>
+												<label class="form-check-label fw-bolder text-success" for="input-swith">수입</label>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- Invoice Add Left ends -->
+
+						<!-- Invoice Add Right starts -->
+						<div class="col-xl-3 col-md-4 col-12">
+							<div class="card">
+								<div class="card-body">
+									<button id="save-button" class="btn btn-primary w-100 mb-75">저장</button>
+									<a href="/money/list.do" class="btn btn-outline-danger w-100">뒤로가기</a>
+								</div>
+							</div>
+						</div>
+						<!-- Invoice Add Right ends -->
+					</div>
+					<!-- add End -->
+
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- END: Content-->
+
+	<div class="sidenav-overlay"></div>
+	<div class="drag-target"></div>
+
+	<!-- BEGIN: Footer-->
+	<button class="btn btn-primary btn-icon scroll-top" type="button">
+		<i data-feather="arrow-up"></i>
+	</button>
+	<!-- END: Footer-->
+
+	<script type="text/javascript" th:src="@{/js/vendors.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/flatpickr.min.js}"></script>
+
+	<script type="text/javascript" th:src="@{/js/toastr.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/app-menu.js}"></script>
+	<script type="text/javascript" th:src="@{/js/app.js}"></script>
+	
+	<script type="text/javascript" th:src="@{/js/requests.js}"></script>
+
+	<script>
+		$(window).on('load', function() {
+
+			var basicPickr = $('.flatpickr-basic');
+			if (basicPickr.length) {
+				basicPickr.flatpickr();
+			}
+			
+			
+			
+			$('#save-button').on('click', function() {
+				var category = $("input[name='categoryRadio']:checked").closest('li').find('.h5').text();
+				var date = $('#input-date').val();
+				var amount = $('#input-amount').val();
+				var title = $('#input-title').val();
+				var isIncome = $('#input-swith').prop('checked');
+				console.log(category, date, amount, title, isIncome)
+				
+				if (!category){
+					window.requests.failToast("카테고리를 선택해주세요");
+					return;
+				}
+				if (!date){
+					window.requests.failToast("날짜를 선택해주세요");
+					return;
+				}
+				if (!amount){
+					window.requests.failToast("금액을 입력해주세요");
+					return;
+				}
+				if (!title){
+					window.requests.failToast("항목 설명을 입력해주세요");
+					return;
+				}
+				
+				var data = {
+					category: category,
+					createdDate: date,
+					amount: amount,
+					title: title,
+					incomeYn: isIncome? 'Y' : 'N',
+				}
+				
+				window.requests.post('/money', data).done(function (response) {
+					window.requests.successToast(response);
+			    }).fail(function (data, status, error) {
+			    	window.requests.failToast(data.responseText);
+			    });
+				
+			})
+			
+
+			if (feather) {
+				feather.replace({
+					width : 14,
+					height : 14
+				});
+			}
+		})
+	</script>
+</body>
+<!-- END: Body-->
+
+</html>

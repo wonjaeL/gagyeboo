@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
+
+<title>가계부</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/vendors.min.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap-extended.css}" />
+
+
+<link rel="stylesheet" th:href="@{/css/dataTables.bootstrap5.min.css}" />
+
+<link rel="stylesheet" th:href="@{/css/colors.css}" />
+<link rel="stylesheet" th:href="@{/css/components.css}" />
+
+
+<link rel="stylesheet" th:href="@{/css/vertical-menu.css}" />
+<link rel="stylesheet" th:href="@{/css/flatpickr.min.css}" />
+
+<link rel="stylesheet" th:href="@{/css/apexcharts.css}" />
+<link rel="stylesheet" th:href="@{/css/toastr.min.css}" />
+
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
+	data-menu="vertical-menu-modern" data-col="">
+
+
+	<!-- BEGIN: Main Menu-->
+	<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+		<div class="navbar-header">
+			<ul class="nav navbar-nav flex-row">
+				<li class="nav-item me-auto"><a class="navbar-brand" href="/"> <span class="brand-logo"> <image
+								th:src="@{/images/favicon.ico}" width=100></span>
+						<h2 class="brand-text">가 계 부</h2>
+				</a></li>
+				<li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"> <i
+						class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i> <i
+						class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a>
+				</li>
+			</ul>
+		</div>
+		<div class="shadow-bottom"></div>
+		<div class="main-menu-content">
+			<ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+				<li class=" nav-item"><a class="d-flex align-items-center" href="/money/dashboard.do"><i data-feather="bar-chart"></i>
+						<span class="menu-title text-truncate" data-i18n="Home">리포트</span> </a></li>
+				<li class=" nav-item"><a class="d-flex align-items-center" href="/money/list.do"><i data-feather="list"></i> <span
+						class="menu-title text-truncate" data-i18n="Home">목록</span> </a></li>
+				<li class=" nav-item"><a class="d-flex align-items-center" href="/money/add.do"><i data-feather="plus"></i> <span
+						class="menu-title text-truncate" data-i18n="Home">항목 추가</span> </a></li>
+				<li class=" nav-item"><a class="d-flex align-items-center" href="/user/list.do"><i data-feather="user"></i> <span
+						class="menu-title text-truncate" data-i18n="Home">권한 제어</span> </a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- END: Main Menu-->
+
+	<!-- BEGIN: Content-->
+	<div class="app-content content ">
+		<div class="content-overlay"></div>
+		<div class="content-wrapper">
+			<div class="content-header row">
+				<div class="content-header-left col-md-9 col-12 mb-2">
+					<div class="row breadcrumbs-top">
+						<div class="col-12">
+							<h2 class="content-header-title float-start mb-0">권한 제어</h2>
+						</div>
+					</div>
+				</div>
+				<div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+					<div class="mb-1 breadcrumb-right"></div>
+				</div>
+			</div>
+			<div class="content-body">
+				<div class="row">
+					<!-- Table Start -->
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body p-0">
+								<table class="datatables-basic table">
+									<thead>
+										<tr>
+											<th>ID</th>
+											<th>권한</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}" th:attr="id=${list.userNo}">
+											<td th:text="${list.userId}"></td>
+											<td th:text="${list.roleName}"></td>
+											<td>
+												<button name="button-admin" th:if="${list.roleName == 'USER'}" class="btn btn-danger">관리자로 변경</button>
+												<button name="button-user" th:if="${list.roleName == 'ADMIN'}" class="btn btn-primary">일반 사용자로 변경</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
+					<!-- Table End -->
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- END: Content-->
+
+	<div class="sidenav-overlay"></div>
+	<div class="drag-target"></div>
+
+	<!-- BEGIN: Footer-->
+	<button class="btn btn-primary btn-icon scroll-top" type="button">
+		<i data-feather="arrow-up"></i>
+	</button>
+	<!-- END: Footer-->
+
+	<script type="text/javascript" th:src="@{/js/vendors.min.js}"></script>
+
+	<script type="text/javascript" th:src="@{/js/jquery.dataTables.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/dataTables.bootstrap5.min.js}"></script>
+
+	<script type="text/javascript" th:src="@{/js/toastr.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/app-menu.js}"></script>
+	<script type="text/javascript" th:src="@{/js/app.js}"></script>
+	<script type="text/javascript" th:src="@{/js/requests.js}"></script>
+	
+
+	<script>
+		$(window).on('load', function() {
+			var dt_basic_table = $('.datatables-basic');
+			var dt_basic = dt_basic_table.DataTable({
+				dom : '<"card-header"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+				 drawCallback: function( settings ) {
+					 feather.replace({
+						width : 14,
+						height : 14
+					});
+			     },
+			});
+			
+			function updateUserRole($element, roleName) {
+				var params = {
+					userNo: $element.parent().parent().attr('id'),
+					roleName: roleName,
+				}
+				window.requests.post('/user', params).done(function(response){
+					window.location.reload();
+				}).fail(function(response){
+					window.location.reload();
+				});
+			}
+			
+			
+			$('button[name="button-admin"]').on('click', function() {
+				var $element = $(this);
+				updateUserRole($element, 'ADMIN')
+			});
+			
+			
+			$('button[name="button-user"]').on('click', function() {
+				var $element = $(this);
+				updateUserRole($element, 'USER')
+			});
+			
+
+			if (feather) {
+				feather.replace({
+					width : 14,
+					height : 14
+				});
+			}
+		});
+	</script>
+</body>
+<!-- END: Body-->
+
+</html>

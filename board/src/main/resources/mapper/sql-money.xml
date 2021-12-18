@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.ac.inha.money.mapper.MoneyMapper">
+	<select id="selectMoneyList"
+		resultType="kr.ac.inha.money.dto.MoneyDto">
+		<![CDATA[
+			SELECT
+				id,
+				title,
+				category,
+				amount,
+				income_yn,
+				DATE_FORMAT(created_date, '%Y-%m-%d') AS created_date
+			FROM
+				t_money
+			ORDER BY created_date DESC
+		]]>
+	</select>
+
+	<insert id="insertMoney"
+		parameterType="kr.ac.inha.money.dto.MoneyDto"
+		useGeneratedKeys="true" keyProperty="id">
+		<![CDATA[
+			INSERT INTO t_money
+			(
+				title,
+				category,
+				amount,
+				income_yn,
+				created_date
+			)
+			VALUES
+			(
+				#{title},
+				#{category},
+				#{amount},
+				#{incomeYn},
+				#{createdDate}
+			)
+		]]>
+	</insert>
+	
+	<select id="getMonthlySummaryList"
+		resultType="kr.ac.inha.money.dto.DashboardDto">
+		<![CDATA[
+			SELECT date_format(created_date, '%Y-%m') as created_date,
+				   sum(if(`income_yn` = 'Y', amount, 0)) as income,
+				   sum(if(`income_yn` = 'N', amount, 0)) as expense
+			FROM t_money
+			GROUP BY year(created_date),month(created_date);
+		]]>
+	</select>
+	
+	<select id="getCategorySummaryList"
+		resultType="kr.ac.inha.money.dto.DashboardDto">
+		<![CDATA[
+			SELECT category,
+				   sum(if(`income_yn` = 'N', amount, 0)) as expense
+			FROM t_money
+			WHERE income_yn = 'N'
+			GROUP BY category;
+		]]>
+	</select>
+	
+	
+</mapper>

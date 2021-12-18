@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="loading" lang="en" data-textdirection="ltr">
+<!-- BEGIN: Head-->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
+
+<title>가계부</title>
+<link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/vendors.min.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap-extended.css}" />
+
+<link rel="stylesheet" th:href="@{/css/colors.css}" />
+<link rel="stylesheet" th:href="@{/css/components.css}" />
+
+
+<link rel="stylesheet" th:href="@{/css/vertical-menu.css}" />
+<link rel="stylesheet" th:href="@{/css/page-misc.css}" />
+
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <!-- Not authorized-->
+                <div class="misc-wrapper">
+                    <div class="misc-inner p-2 p-sm-3">
+                        <div class="w-100 text-center">
+                            <h2 class="mb-1">당신은 권한이 없습니다! 🔐</h2>
+                            <p class="mb-2">
+                                관리자에게 연락해서 권한을 요청하세요
+                            </p><a class="btn btn-primary mb-1 btn-sm-block" href="/login/login.do">로그인 페이지로 돌아가기</a><img class="img-fluid" th:src="@{/icons/not-authorized.svg}" alt="Not authorized page" />
+                        </div>
+                    </div>
+                </div>
+                <!-- / Not authorized-->
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+
+	<script type="text/javascript" th:src="@{/js/vendors.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/app-menu.js}"></script>
+	<script type="text/javascript" th:src="@{/js/app.js}"></script>
+
+	<script>
+		$(window).on('load', function() {
+			if (feather) {
+				feather.replace({
+					width : 14,
+					height : 14
+				});
+			}
+		});
+	</script>
+</body>
+<!-- END: Body-->
+
+</html>
